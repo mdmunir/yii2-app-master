@@ -9,7 +9,6 @@ use common\models\ResetPasswordForm;
 use common\models\SignupForm;
 use common\models\ChangePasswordForm;
 use common\models\ChangeUserEmailForm;
-use common\models\UserProfile;
 use common\models\User;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -18,7 +17,7 @@ use yii\filters\VerbFilter;
 use common\classes\AuthFilter;
 use common\classes\GuestFilter;
 use common\classes\AuthHandler;
-use common\classes\UploadImage;
+use mdm\upload\UploadImage;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -99,10 +98,10 @@ class UserController extends Controller
 
     public function actionUploadPhoto()
     {
-        $model = UserProfile::findOne(Yii::$app->user->id);
+        $model = Yii::$app->user->identity;
         $photo_id = UploadImage::store('image', [
                 'crop' => Yii::$app->getRequest()->post('crop'),
-                'rules' => ['minWidth' => 400]
+                'rules' => ['minWidth' => 200]
         ]);
         if ($photo_id !== false) {
             $model->photo_id = $photo_id;

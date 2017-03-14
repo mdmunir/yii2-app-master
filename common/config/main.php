@@ -8,6 +8,11 @@ return [
         '@npm' => dirname(dirname(__DIR__)) . '/vendor/npm-asset',
         '@runtime' => dirname(__DIR__) . '/runtime',
     ],
+    'controllerMap' => [
+        'image' => [
+            'class' => 'mdm\upload\ImageController'
+        ]
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\DbCache',
@@ -56,21 +61,21 @@ return [
         'frontendUrlManager' => [
             'class' => 'yii\web\UrlManager',
             'baseUrl' => '',
-            'scriptUrl' => 'index.php',
+            'scriptUrl' => '/index.php',
             'rules' => require Yii::getAlias('@frontend/config/url-rules.php'),
             'enablePrettyUrl' => true,
         ],
         'backendUrlManager' => [
             'class' => 'yii\web\UrlManager',
             'baseUrl' => '',
-            'scriptUrl' => 'index.php',
+            'scriptUrl' => '/index.php',
             'rules' => require Yii::getAlias('@backend/config/url-rules.php'),
             'enablePrettyUrl' => true,
         ],
         'restUrlManager' => [
             'class' => 'yii\web\UrlManager',
             'baseUrl' => '',
-            'scriptUrl' => 'index.php',
+            'scriptUrl' => '/index.php',
             'rules' => require Yii::getAlias('@rest/config/url-rules.php'),
             'enablePrettyUrl' => true,
         ],

@@ -34,7 +34,8 @@ class Url extends BaseUrl
                     $scheme = true;
                 }
             }
-        }try {
+        }
+        try {
             $url = parent::toRoute($route, $scheme);
             static::$app = $current;
             return $url;
